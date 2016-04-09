@@ -1,20 +1,22 @@
-/**
- * Created by walter on 16/4/7.
- */
-import {createApp} from 'mantra-core';
-import initContext from './configs/context';
+import { Template } from 'meteor/templating';
+import { ReactiveVar } from 'meteor/reactive-var';
 
-// modules
-import coreModule from './modules/core';
-import userModule from './modules/users';
-import itemsModule from './modules/items';
+import './main.html';
 
-// 初始化context
-const context  = initContext();
+Template.hello.onCreated(function helloOnCreated() {
+  // counter starts at 0
+  this.counter = new ReactiveVar(0);
+});
 
-// 创建app
-const app = createApp(context);
-app.loadModule(coreModule);
-app.loadModule(userModule);
-app.loadModule(itemsModule);
-app.init();
+Template.hello.helpers({
+  counter() {
+    return Template.instance().counter.get();
+  },
+});
+
+Template.hello.events({
+  'click button'(event, instance) {
+    // increment the counter when button is clicked
+    instance.counter.set(instance.counter.get() + 1);
+  },
+});
