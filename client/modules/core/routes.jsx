@@ -3,6 +3,7 @@ import {mount} from 'react-mounter';
 import Layout from './components/MainLayout.jsx';
 import ItemList from '../items/components/ItemList.jsx';
 import EditItem from '../items/components/EditItem.jsx';
+import NewUser from '../users/containers/NewUser.jsx';
 
 export default function (injectDeps, {FlowRouter}) {
     const MainLayoutCtx = injectDeps(Layout);
@@ -19,6 +20,14 @@ export default function (injectDeps, {FlowRouter}) {
         action() {
             mount(MainLayoutCtx,{
                 content: () => (<EditItem />)
+            });
+        }
+    });
+    FlowRouter.route('/register',{
+        name:'users.new',
+        action() {
+            mount(MainLayoutCtx,{
+                content: () => (<NewUser />)
             });
         }
     });
