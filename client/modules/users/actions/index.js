@@ -1,7 +1,7 @@
 import users from './users';
 
 const actions = {
-    users
+  users
 };
 
 export default actions;
