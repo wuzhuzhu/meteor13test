@@ -1,11 +1,13 @@
 const {describe, it} = global;
 import {expect} from 'chai';
 import {shallow} from 'enzyme';
-import ItemList from '../components/ItemList.jsx';
+import Item from '../components/Item.jsx';
 
-describe('items.components.itemlist', () => {
-   it('事件列表应该显示的文本信息', () => {
-       const el = shallow(<ItemList />);
-       expect(el.find('a').text()).to.be.match(/新项目/);
-   })
+describe('items.components.item', () => {
+    it('能正确显示单个事项', () => {
+        const item = {name:'测试事项名', description:'测试事项内容'};
+        const el = shallow(<Item item={item} />);
+        expect(el.find('h2').text()).to.be.match(/测试事项名/);
+        expect(el.find('p').text()).to.be.match(/测试事项内容/);
+    });
 });

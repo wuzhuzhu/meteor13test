@@ -19,6 +19,12 @@ export default function (injectDeps, {FlowRouter}) {
             });
         }
     });
+    FlowRouter.notFound = {
+        // Subscriptions registered here don't have Fast Render support.
+        action: function() {
+            FlowRouter.go(FlowRouter.path('items.list'))
+        }
+    };
     FlowRouter.route('/edit',{
         name:'items.edit',
         action() {
@@ -55,7 +61,7 @@ export default function (injectDeps, {FlowRouter}) {
         name: 'users.logout',
         action() {
             Meteor.logout();
-            FlowRouter.go('/');
+            FlowRouter.go(FlowRouter.path('items.list'));
         }
     });
     FlowRouter.route('/categories', {
@@ -72,6 +78,14 @@ export default function (injectDeps, {FlowRouter}) {
             mount(MainLayoutCtx,{
                 content: () => (<NewCategory />)
             });
+        }
+    });
+    FlowRouter.route('/redirect', {
+        triggersEnter: [function(context, redirect) {
+            redirect(FlowRouter.path('items.list'));
+        }],
+        action: function(_params) {
+            throw new Error("this should not get called");
         }
     });
 }

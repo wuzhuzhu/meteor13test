@@ -13,6 +13,7 @@ const ItemList = ({items, percentage}) => (
         <Row className="show-grid">
             <Col xs={12}>
                 <a href="/edit">
+                    <p>hihihi</p>
                     <Glyphicon glyph="plus"></Glyphicon> 新项目
                 </a>
             </Col>

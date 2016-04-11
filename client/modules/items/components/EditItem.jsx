@@ -4,6 +4,16 @@ import DateTimeField from 'react-bootstrap-datetimepicker';
 
 
 class EditItem extends React.Component {
+    componentWillMount() {
+        this.runLog();
+    }
+
+    componentWillUnmount() {
+
+    }
+
+
+
     render() {
         const {item, error} = this.props;
         return (
@@ -23,6 +33,14 @@ class EditItem extends React.Component {
                 </Panel>
             </Col>
         )
+    }
+
+    runLog() {
+        trackerId = Tracker.autorun(function() {
+            var routeName = FlowRouter.getRouteName();
+            console.log("Current route name is: ", routeName);
+        });
+        console.log(trackerId)
     }
 
     createItem(e) {
