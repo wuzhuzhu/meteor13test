@@ -3,7 +3,7 @@ import {mount} from 'react-mounter';
 
 import Layout from './components/MainLayout.jsx';
 import ItemList from '../items/containers/ItemList.js';
-import EditItem from '../items/components/EditItem.jsx';
+import EditItem from '../items/containers/EditItem.js';
 import NewUser from '../users/containers/NewUser.jsx';
 import Login from '../users/containers/Login.js'
 import CategoryList from '../items/containers/CategoryList.js'

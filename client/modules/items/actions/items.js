@@ -7,10 +7,6 @@ export default {
             return LocalState.set('CREATE_ITEM_ERROR','事项名称是必填项');
         }
 
-        if (!description) {
-            return LocalState.set('CREATE_ITEM_ERROR','事项描述是必填项');
-        }
-
         LocalState.set('CREATE_ITEM_ERROR', null);
 
         Meteor.call('items.create', name, description, due, (err) => {

@@ -9,12 +9,12 @@ export const composer = ({context, itemId, clearErrors}, onData) => {
     const error = LocalState.get('CREATE_ITEM_ERROR');
     if (itemId !== undefined) {
         if (Meteor.subscribe('items.single', itemId).ready()) {
-            const item = Collections.findOne(itemId);
+            const item = Collections.Items.findOne(itemId);
             onData(null, {item});
         } else  {
             const item = Collections.Items.findOne(itemId);
             if (item) {
-                onData(null, {item});
+                onData(null, {item, error});
             } else {
                 onData();
             }
@@ -37,4 +37,4 @@ export const depsMapper = (context, actions) => ({
 export default composeAll(
     composeWithTracker(composer),
     useDeps(depsMapper)
-)(EditItem)
+)(EditItem);

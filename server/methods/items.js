@@ -9,13 +9,23 @@ export default function () {
             const createAt = new Date();
             const category = {name, createAt};
             Categories.insert(category);
-        },
-        'items.create'(name, description) {
+        }
+    });
+    Meteor.methods({
+        'items.create'(name, description, due) {
             check(name, String);
             check(description, String);
-            const createAt = new Date();
-            const item = {name, descrition, createAt};
+            check(due, String);
+            const createdAt = new Date();
+            const item = {name, description, due, createdAt};
             Items.insert(item);
+        },
+        'items.markComplete'(complete, itemId) {
+            check(complete, Boolean);
+            check(itemId, String);
+            Items.update(itemId, {
+                $set: {complete:complete}
+            });
         }
-    })
+    });
 }
