@@ -25,3 +25,5 @@ random
 twbs:bootstrap
 accounts-password
 msavin:mongol
+bayes:accounts-wechat
+service-configuration
