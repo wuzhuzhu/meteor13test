@@ -27,3 +27,5 @@ accounts-password
 msavin:mongol
 bayes:accounts-wechat
 service-configuration
+aldeed:simple-schema
+aldeed:collection2

@@ -27,7 +27,7 @@ class EditItem extends React.Component {
                     <form>
                         <Input ref="name" type="text" placeholder="名称" defaultValue={item ? item.name : ''} />
                         <Input ref="description" type="text" placeholder="描述" defaultValue={item ? item.description : ''} />
-                        <DateTimeField ref="due" inputFormat="MM/DD/Y" defaultText="" />
+                        <DateTimeField language="zh-cn" ref="due" forceParse="false" inputFormat="MM/DD/Y" defaultText="" />
                         <ButtonInput onClick={this.createItem.bind(this)} bsStyle="primary" type="submit" value="保存事项" />
                     </form>
                 </Panel>
@@ -45,11 +45,19 @@ class EditItem extends React.Component {
 
     createItem(e) {
         e.preventDefault();
-        const {create} = this.props;
+        const { item, create, edit } = this.props;
         const {name, description, due} = this.refs;
-        create(name.getValue(), description.getValue(), due.getValue());
-        name.getInputDOMNode().value ='';
-        description.getInputDOMNode().value ='';
+        if (item && item._id) {
+            edit(item._id, name.getValue(), description.getValue(), due.getValue());
+            name.getInputDOMNode().value ='';
+            description.getInputDOMNode().value ='';
+        } else {
+            create(name.getValue(), description.getValue(), due.getValue());
+            name.getInputDOMNode().value ='';
+            description.getInputDOMNode().value ='';
+        }
+
+
     }
 }
 

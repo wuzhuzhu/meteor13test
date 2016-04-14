@@ -20,6 +20,15 @@ export default function () {
             const item = {name, description, due, createdAt};
             Items.insert(item);
         },
+        'items.edit'(id, name, description = "", due = "") {
+            check(id, String);
+            check(name, String);
+            check(description, String);
+            check(due, String);
+            const updateAt = new Date();
+            const item = {name, description, due, updateAt};
+            Items.update(id, {$set: item});
+        },
         'items.markComplete'(complete, itemId) {
             check(complete, Boolean);
             check(itemId, String);

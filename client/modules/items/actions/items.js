@@ -18,6 +18,26 @@ export default {
         FlowRouter.go('/')
     },
 
+    edit({Meteor, LocalState, FlowRouter}, id, name, description, due) {
+        if (!name) {
+            return LocalState.set('CREATE_ITEM_ERROR','事项名称是必填项');
+        }
+
+        if (!id) {
+            return LocalState.set('CREATE_ITEM_ERROR','没有编辑的事项对象');
+        }
+
+        LocalState.set('CREATE_ITEM_ERROR', null);
+
+        Meteor.call('items.edit', id, name, description, due, (err) => {
+            if (err) {
+                return LocalState.set('SAVING_ERROR', err.message);
+            }
+        });
+
+        FlowRouter.go('/')
+    },
+
     clearErrors({LocalState}) {
         return LocalState.set('SAVING_ERROR', null)
     }
