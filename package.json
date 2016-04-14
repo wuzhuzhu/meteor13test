@@ -5,9 +5,7 @@
     "testonly": "mocha client/**/tests/**/*.js --compilers js:babel-core/register",
     "test": "npm run testonly",
     "test-watch": "npm run testonly -- --watch --watch-extensions js,jsx",
-    "start": "meteor run",
-    "lint": "eslint .",
-    "pretest": "npm run lint --silent"
+    "start": "meteor run"
   },
   "private": true,
   "devDependencies": {
@@ -20,11 +18,8 @@
     "babel-root-slash-import": "1.x.x",
     "chai": "^3.5.0",
     "enzyme": "1.x.x",
-    "eslint": "^2.7.0",
-    "eslint-config-airbnb": "^7.0.0",
-    "eslint-plugin-jsx-a11y": "^0.6.2",
-    "eslint-plugin-meteor": "^3.4.0",
-    "eslint-plugin-react": "^4.3.0",
+    "eslint": "1.10.x",
+    "eslint-plugin-react": "3.15.x",
     "mocha": "^2.4.5",
     "moment": "^2.12.0",
     "react-addons-test-utils": "^0.14.6",
@@ -45,15 +40,5 @@
     "react-mounter": "^1.0.0",
     "react-prop-types": "^0.3.0",
     "warning": "^2.1.0"
-  },
-  "eslintConfig": {
-    "plugins": [
-      "meteor"
-    ],
-    "extends": [
-      "airbnb/base",
-      "plugin:meteor/recommended"
-    ],
-    "rules": {}
   }
 }
