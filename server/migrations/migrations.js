@@ -18,4 +18,19 @@ export default function () {
             Items.update({}, {$unset: {createdAt: true}}, {multi: true});
         }
     });
+    Migrations.add({
+        version: 2,
+        name: 'remove invalid dates',
+        up: function () {
+            Items.find({due: "Invalid date"}).forEach(
+                item => {
+                    let due = new Date();
+                    Items.update(item._id, {$set: {due}});
+                }
+            )
+        },
+        down: function () {
+            Items.update({}, {$unset: {createdAt: true}}, {multi: true});
+        }
+    });
 }
