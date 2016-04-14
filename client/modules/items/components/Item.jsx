@@ -9,7 +9,7 @@ class Item extends React.Component {
                                              : {'border': 'solid 1px #e3e3e3'};
         const completedStyle = item.complete ? {'color': '#eee', 'text-decoration': 'line-through'}
             : {'color': '#333'};
-        const compactstyle = Object.assign(style, completedStyle)
+        const compactstyle = Object.assign(style, completedStyle);
         return (
             <Col xs={4}>
                 <Panel style={compactstyle}>
@@ -17,8 +17,11 @@ class Item extends React.Component {
                         <Col xs={10}>
                             <h2 style={completedStyle}>{item.name}</h2>
                         </Col>
-                        <Col xs={2}>
+                        <Col xs={1}>
                             <a href={`/edit/${item._id}`}><Glyphicon glyph="pencil"></Glyphicon></a>
+                        </Col>
+                        <Col xs={1}>
+                            <a href="#" onClick={this.removeItem.bind(this)}><Glyphicon glyph="remove"></Glyphicon></a>
                         </Col>
                     </Row>
                     <Row>
@@ -40,6 +43,12 @@ class Item extends React.Component {
         const complete = this.refs.complete.getChecked();
         const itemId = this.props.item._id;
         Meteor.call('items.markComplete', complete, itemId);
+    }
+
+    removeItem(e) {
+        e.preventDefault()
+        const itemId = this.props.item._id;
+        Meteor.call('items.softRemove', itemId);
     }
 }
 

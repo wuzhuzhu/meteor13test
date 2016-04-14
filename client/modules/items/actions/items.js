@@ -20,14 +20,14 @@ export default {
 
     edit({Meteor, LocalState, FlowRouter}, id, name, description, due) {
         if (!name) {
-            return LocalState.set('CREATE_ITEM_ERROR','事项名称是必填项');
+            return LocalState.set('EDIT_ITEM_ERROR','事项名称是必填项');
         }
 
         if (!id) {
-            return LocalState.set('CREATE_ITEM_ERROR','没有编辑的事项对象');
+            return LocalState.set('EDIT_ITEM_ERROR','没有编辑的事项对象');
         }
 
-        LocalState.set('CREATE_ITEM_ERROR', null);
+        LocalState.set('EDIT_ITEM_ERROR', null);
 
         Meteor.call('items.edit', id, name, description, due, (err) => {
             if (err) {
@@ -37,6 +37,21 @@ export default {
 
         FlowRouter.go('/')
     },
+
+    // 直接在component中调用method
+/*    remove({Meteor, LocalState}, id) {
+        if (!id) {
+            return LocalState.set('REMOVE_ITEM_ERROR','没有要删除的对象id');
+        }
+
+        LocalState.set('REMOVE_ITEM_ERROR', null);
+
+        Meteor.call('items.remove', id, err => {
+            if (err) {
+                return LocalState.set('SAVING_ERROR', err.message)
+            }
+        })
+    },*/
 
     clearErrors({LocalState}) {
         return LocalState.set('SAVING_ERROR', null)

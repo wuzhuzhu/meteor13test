@@ -29,6 +29,10 @@ export default function () {
             const item = {name, description, due, updateAt};
             Items.update(id, {$set: item});
         },
+        'items.softRemove'(id) {
+            check(id, String);
+            Items.update(id, {$set: {deleted: true}})
+        },
         'items.markComplete'(complete, itemId) {
             check(complete, Boolean);
             check(itemId, String);
