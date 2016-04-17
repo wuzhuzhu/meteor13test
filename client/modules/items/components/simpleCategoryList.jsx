@@ -1,9 +1,15 @@
 import React from 'react';
-import { FlatButton } from 'material-ui';
+// import { FlatButton } from 'material-ui';
+import {Button} from 'react-bootstrap'
 
 import CategoryButton from '../containers/CategoryButton';
 
 class SimpleCategoryList extends React.Component {
+    clearSelectedCategory() {
+        const {clearSelectedCategory} = this.props;
+        clearSelectedCategory();
+    }
+
     render() {
         const {categories} = this.props;
         return (
@@ -11,14 +17,9 @@ class SimpleCategoryList extends React.Component {
                 {categories.map(category => (
                     <CategoryButton key={category._id} category={category} />
                 ))}
-                <FlatButton onClick={this.clearSelectedCategory.bind(this)} label="全部" />
+                <Button onClick={this.clearSelectedCategory.bind(this)}>全部</Button>
             </div>
         )
-    }
-
-    clearSelectedCategory() {
-        const {clearSelectedCategory} = this.props;
-        clearSelectedCategory();
     }
 }
 
