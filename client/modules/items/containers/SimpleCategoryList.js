@@ -1,4 +1,4 @@
-import SimpleCategoryList from '../components/SimpleCategoryList.jsx';
+import SimpleCategoryList from '../components/categorytags.jsx';
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
 export const composer = (props, onData) => {
