@@ -7,7 +7,7 @@ export const composer = (props, onData) => {
 }
 
 export const depsMapper = (context, actions) => ({
-    setCategory: actions.itemslist.setCategory,
+    setCategory: actions.itemlist.setCategory,
     context: () => context
 });
 

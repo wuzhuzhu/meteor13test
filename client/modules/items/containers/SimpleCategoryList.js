@@ -7,7 +7,7 @@ export const composer = (props, onData) => {
 }
 
 export const depsMapper = (context, actions) => ({
-    clearSelectedCategory: actions.itemslist.clearSelectedCategory,
+    clearSelectedCategory: actions.itemlist.clearSelectedCategory,
     context: () => context
 });
 
