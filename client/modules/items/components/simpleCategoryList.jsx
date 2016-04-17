@@ -22,10 +22,4 @@ class SimpleCategoryList extends React.Component {
     }
 }
 
-
-
-SimpleCategoryList.clearSelectedList = () => {
-
-};
-
 export default SimpleCategoryList;
