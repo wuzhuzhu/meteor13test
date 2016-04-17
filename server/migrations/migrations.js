@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import { Items } from  '/lib/collections';
+import { Items } from  '/lib/items';
 import { Migrations } from 'meteor/percolate:migrations';
 
 export default function () {

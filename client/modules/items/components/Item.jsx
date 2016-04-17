@@ -15,7 +15,8 @@ class Item extends React.Component {
                 <Panel style={compactstyle}>
                     <Row>
                         <Col xs={10}>
-                            <h2 style={completedStyle}>{item.name}</h2>
+                            <h2 style={completedStyle}>{item.name}<small> - {item.get_category_name()}</small></h2>
+
                         </Col>
                         <Col xs={1}>
                             <a href={`/edit/${item._id}`}><Glyphicon glyph="pencil"></Glyphicon></a>

@@ -8,19 +8,26 @@ export const composer = ({context, itemId, clearErrors}, onData) => {
     const {LocalState, Meteor, Collections} = context();
     const error = LocalState.get('CREATE_ITEM_ERROR');
     if (itemId !== undefined) {
-        if (Meteor.subscribe('items.single', itemId).ready()) {
+        if (
+            Meteor.subscribe('items.single', itemId).ready() && Meteor.subscribe('categories.namelist').ready()
+        ) {
             const item = Collections.Items.findOne(itemId);
-            onData(null, {item});
+            const categories = Collections.Categories.find().fetch();
+            onData(null, {item, categories});
         } else  {
             const item = Collections.Items.findOne(itemId);
-            if (item) {
-                onData(null, {item, error});
+            const categories = Collections.Categories.find().fetch();
+            if (item && categories) {
+                onData(null, {item, categories, error});
             } else {
                 onData();
             }
         }
     } else {
-        onData(null, {error});
+        if (Meteor.subscribe('categories.namelist').ready()) {
+            const categories = Collections.Categories.find().fetch()
+            onData(null, {categories, error})
+        }
     }
 
     //卸载组件时 清除错误

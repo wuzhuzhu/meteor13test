@@ -2,14 +2,14 @@
  * Created by walter on 16/4/11.
  */
 export default {
-    create({Meteor, LocalState, FlowRouter}, name, description, due) {
+    create({Meteor, LocalState, FlowRouter}, name, description, due, category) {
         if (!name) {
             return LocalState.set('CREATE_ITEM_ERROR','事项名称是必填项');
         }
 
         LocalState.set('CREATE_ITEM_ERROR', null);
 
-        Meteor.call('items.create', name, description, due, (err) => {
+        Meteor.call('items.create', name, description, due, category, (err) => {
             if (err) {
                 return LocalState.set('SAVING_ERROR', err.message);
             }
@@ -18,7 +18,7 @@ export default {
         FlowRouter.go('/')
     },
 
-    edit({Meteor, LocalState, FlowRouter}, id, name, description, due) {
+    edit({Meteor, LocalState, FlowRouter}, id, name, description, due, category) {
         if (!name) {
             return LocalState.set('EDIT_ITEM_ERROR','事项名称是必填项');
         }
@@ -29,7 +29,7 @@ export default {
 
         LocalState.set('EDIT_ITEM_ERROR', null);
 
-        Meteor.call('items.edit', id, name, description, due, (err) => {
+        Meteor.call('items.edit', id, name, description, due, category, (err) => {
             if (err) {
                 return LocalState.set('SAVING_ERROR', err.message);
             }

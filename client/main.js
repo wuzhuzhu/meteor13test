@@ -1,6 +1,7 @@
 /**
  * Created by walter on 16/4/7.
  */
+import injectTapEventPlugin from 'react-tap-event-plugin'
 import {createApp} from 'mantra-core';
 import initContext from './configs/context';
 
@@ -11,6 +12,7 @@ import itemsModule from './modules/items';
 
 // 初始化context
 const context  = initContext();
+injectTapEventPlugin();
 
 // 创建app
 const app = createApp(context);

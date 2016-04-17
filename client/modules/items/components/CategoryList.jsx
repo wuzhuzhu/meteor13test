@@ -12,6 +12,11 @@ const CategoryList = ({categories}) => (
             <Col xs={3} key={category.id}>
                 <Panel>
                     <h2>{category.name}</h2>
+                    <p>{category.description}</p>
+
+                    {category.related_items().map(item => {
+                        <p key={item._id}>{item._id}</p>
+                    })}
                 </Panel>
             </Col>
         ))}

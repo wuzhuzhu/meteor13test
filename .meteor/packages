@@ -30,3 +30,5 @@ service-configuration
 aldeed:simple-schema
 aldeed:collection2
 percolate:migrations
+dburles:collection-helpers
+msavin:jetsetter
