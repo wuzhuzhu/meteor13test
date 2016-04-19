@@ -25,7 +25,7 @@ class EditItem extends React.Component {
                     <form>
                         <Input ref="name" type="text" placeholder="名称" defaultValue={item ? item.name : ''} />
                         <Input ref="description" type="text" placeholder="描述" defaultValue={item ? item.description : ''} />
-                        <Input ref="category" type="select" label="分类" placeholder="select" value={item.category}>
+                        <Input ref="category" type="select" label="分类" placeholder="select" value={item ? item.category : null}>
                             {categories.map(category => <option value={category._id}>{category.name}</option>)}
                         </Input>
                         <DateTimeField language="zh-cn" ref="due" forceParse="false" inputFormat="MM/DD/Y" defaultText="" />
