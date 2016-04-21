@@ -1,5 +1,14 @@
 import React from 'react';
 import { Row, Col, Panel, Glyphicon, Input } from 'react-bootstrap'
+
+import Card from 'material-ui/lib/card/card';
+import CardActions from 'material-ui/lib/card/card-actions';
+import CardHeader from 'material-ui/lib/card/card-header';
+import CardMedia from 'material-ui/lib/card/card-media';
+import CardTitle from 'material-ui/lib/card/card-title';
+import FlatButton from 'material-ui/lib/flat-button';
+import CardText from 'material-ui/lib/card/card-text';
+
 import moment from 'moment';
 
 class Item extends React.Component {
@@ -12,6 +21,15 @@ class Item extends React.Component {
         const compactstyle = Object.assign(style, completedStyle);
         return (
             <Col xs={12} sm={6} md={4}>
+                <Card>
+                    <CardTitle title={item.name} subtitle={item.get_category_name() ? item.get_category_name() : "其他"} />
+                    <CardActions>
+                        <FlatButton href={`/edit/${item._id}`} label="编辑" />
+                        <FlatButton label="Action2" />
+                    </CardActions>
+                </Card>
+
+
                 <Panel style={compactstyle}>
                     <Row>
                         <Col xs={10}>
