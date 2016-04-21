@@ -1,18 +1,24 @@
 import React from 'react';
 import { Grid, Row, Col, PageHeader } from 'react-bootstrap'
-import ItemProgress from '../../items/components/ItemProgress.jsx';
+
+import FlatButton from 'material-ui/lib/flat-button'
+import IconButton from 'material-ui/lib/icon-button';
+import NavigationClose from 'material-ui/lib/svg-icons/navigation/close';
+
+import AppBar from './AppBar.jsx';
+
 
 const Layout = ({content}) => (
-   <Grid>
-       <Row>
-           <Col xs={12}>
-               <PageHeader>
-                   不可能的列表
-               </PageHeader>
-           </Col>
-       </Row>
-       {content()}
-   </Grid>
+    <div>
+        <AppBar
+            iconElementLeft={<IconButton><NavigationClose /></IconButton>}
+            iconElementRight={<FlatButton label="Save" />}
+        />
+        <Grid fluid={true}>
+            {content()}
+        </Grid>
+    </div>
+
 );
 
 export default Layout

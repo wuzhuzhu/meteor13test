@@ -1,17 +1,17 @@
 import React from 'react';
 import { Row, Col, Glyphicon } from 'react-bootstrap';
 
-import ItemProgress from '../../items/components/ItemProgress.jsx';
 import Item from './Item.jsx'
 import SimpleCategoryList from '../containers/SimpleCategoryList.js'
+import TodoProgress from '../../items/components/TodoProgress.jsx'
 
 const ItemList = ({items, categories, percentage, selected_category}) => (
     <Row>
         <Row>
-            <Col xs={12} sm={6}>
-                <ItemProgress percentage={percentage} />
+            <Col xs={12}>
+                <TodoProgress percentage={percentage} />
             </Col>
-            <Col xs={12} sm={6}>
+            <Col xs={12}>
                 <SimpleCategoryList categories={categories} />
             </Col>
         </Row>
