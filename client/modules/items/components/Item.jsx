@@ -11,7 +11,7 @@ class Item extends React.Component {
             : {'color': '#333'};
         const compactstyle = Object.assign(style, completedStyle);
         return (
-            <Col xs={4}>
+            <Col xs={12} sm={6} md={4}>
                 <Panel style={compactstyle}>
                     <Row>
                         <Col xs={10}>
