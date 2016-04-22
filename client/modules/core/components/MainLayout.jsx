@@ -5,7 +5,7 @@ import FlatButton from 'material-ui/lib/flat-button'
 import IconButton from 'material-ui/lib/icon-button';
 import NavigationClose from 'material-ui/lib/svg-icons/navigation/close';
 
-import AppBar from './AppBar.jsx';
+import AppBar from '../containers/AppBar';
 
 
 const Layout = ({content}) => (

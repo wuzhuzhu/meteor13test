@@ -33,3 +33,4 @@ percolate:migrations
 dburles:collection-helpers
 msavin:jetsetter
 mdg:geolocation
+tmeasday:publish-counts
