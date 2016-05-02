@@ -1,15 +1,22 @@
 import React from 'react';
 import { Col, Panel, Input, ButtonInput, Glyphicon } from 'react-bootstrap';
 import DateTimeField from 'react-bootstrap-datetimepicker';
+import DatePicker from 'material-ui/lib/date-picker/date-picker'
 
 
 class EditItem extends React.Component {
-    componentWillMount() {
-        this.runLog();
+
+    constructor(props) {
+        super(props);
+        const {item} = props;
+        this.state = {
+            due: item && item.due ? item.due : new Date()
+        };
     }
 
-    componentWillUnmount() {
-
+    handleChangeDue(e) {
+        console.log(e.target)
+        this.setState({due: e.target.value});
     }
 
     render() {
@@ -28,7 +35,7 @@ class EditItem extends React.Component {
                         <Input ref="category" type="select" label="分类" placeholder="select" value={item ? item.category : null}>
                             {categories.map(category => <option value={category._id}>{category.name}</option>)}
                         </Input>
-                        <DateTimeField language="zh-cn" ref="due" forceParse="false" inputFormat="MM/DD/Y" defaultText="" />
+                        <DatePicker ref="due111" forceParse="false" hintText="截止日期" value={this.state.due} defaultValue={this.state.due.toDateString()} onChange={this.handleChangeDue.bind(this)} />
                         <ButtonInput onClick={this.createItem.bind(this)} bsStyle="primary" type="submit" value="保存事项" />
                     </form>
                 </Panel>
@@ -48,8 +55,9 @@ class EditItem extends React.Component {
         e.preventDefault();
         const { item, create, edit } = this.props;
         const {name, description, due, category} = this.refs;
+        console.log(this.refs);
         if (item && item._id) {
-            edit(item._id, name.getValue(), description.getValue(), due.getValue(), category.getValue());
+            edit(item._id, name.getValue(), description.getValue(), due.getDate(), category.getValue());
             name.getInputDOMNode().value ='';
             description.getInputDOMNode().value ='';
             category.getInputDOMNode().value ='';

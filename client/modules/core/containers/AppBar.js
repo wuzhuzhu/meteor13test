@@ -11,7 +11,9 @@ export const composer = ({context}, onData) => {
     const {Meteor, Collections} = context();
     if (Meteor.subscribe('items.count').ready()) {
         const ItemsCount = Counts.get('items.count');
-        onData(null, {ItemsCount});
+        const User = Meteor.user();
+        console.log(User);
+        onData(null, {ItemsCount, User});
     }
 };
 
