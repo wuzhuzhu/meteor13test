@@ -3,6 +3,7 @@ import { Col, Panel, Input, ButtonInput, Glyphicon } from 'react-bootstrap';
 import DateTimeField from 'react-bootstrap-datetimepicker';
 import DatePicker from 'material-ui/lib/date-picker/date-picker'
 
+// todo: 处理editItem的报错.
 
 class EditItem extends React.Component {
 
