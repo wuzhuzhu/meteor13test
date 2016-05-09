@@ -11,13 +11,12 @@ class EditItem extends React.Component {
         super(props);
         const {item} = props;
         this.state = {
-            due: item && item.due ? item.due : new Date()
+            due: item && item.due ? new Date(parseInt(item.due)) : new Date()
         };
     }
 
-    handleChangeDue(e) {
-        console.log(e.target)
-        this.setState({due: e.target.value});
+    handleChangeDue(e, date) {
+        this.setState({due: date});
     }
 
     render() {
@@ -36,7 +35,13 @@ class EditItem extends React.Component {
                         <Input ref="category" type="select" label="分类" placeholder="select" value={item ? item.category : null}>
                             {categories.map(category => <option value={category._id}>{category.name}</option>)}
                         </Input>
-                        <DatePicker ref="due111" forceParse="false" hintText="截止日期" value={this.state.due} defaultValue={this.state.due.toDateString()} onChange={this.handleChangeDue.bind(this)} />
+                        <DatePicker ref="due"
+                                    autoOk={true}
+                                    forceParse="false"
+                                    hintText="截止日期"
+                                    value={this.state.due}
+                                    defaultValue={this.state.due}
+                                    onChange={this.handleChangeDue.bind(this)} />
                         <ButtonInput onClick={this.createItem.bind(this)} bsStyle="primary" type="submit" value="保存事项" />
                     </form>
                 </Panel>
@@ -58,12 +63,12 @@ class EditItem extends React.Component {
         const {name, description, due, category} = this.refs;
         console.log(this.refs);
         if (item && item._id) {
-            edit(item._id, name.getValue(), description.getValue(), due.getDate(), category.getValue());
+            edit(item._id, name.getValue(), description.getValue(), this.state.due.getTime().toString(), category.getValue());
             name.getInputDOMNode().value ='';
             description.getInputDOMNode().value ='';
             category.getInputDOMNode().value ='';
         } else {
-            create(name.getValue(), description.getValue(), due.getValue(), category.getValue());
+            create(name.getValue(), description.getValue(), this.state.due.getTime().toString(), category.getValue());
             name.getInputDOMNode().value ='';
             description.getInputDOMNode().value ='';
             category.getInputDOMNode().value ='';
