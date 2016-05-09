@@ -11,7 +11,7 @@ export default {
         return LocalState.set('SAVING_ERROR', err.message);
       }
     });
-    FlowRouter.go('/categories');
+    FlowRouter.go(FlowRouter.path('categories.list'));
   },
 
   clearErrors({LocalState}) {
